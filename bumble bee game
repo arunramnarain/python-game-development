@@ -1,0 +1,38 @@
+import pgzrun
+
+import time
+
+WIDTH=600
+HEIGHT=500
+score=0
+game_over=False
+bee=Actor("bee")
+flower=Actor("flower")
+#positioning of images
+bee.position=(500,400)
+flower.postion=(300,250)
+
+message=" "
+
+def draw():
+    screen.blit("backround",(0,0))
+    flower.draw()
+    bee.draw()
+    screen.draw.text("SCORE: "+str(score),color="black",topleft=(10,10))
+    if game_over:
+        screen.fill("blue")
+        global message
+        message="times up!\n final score is: "
+        screen.draw.text(message+str(score),midttop=(WIDTH/2,HEIGHT/2),fontsize=10,color="black")
+
+    
+    
+
+def place_flower():
+    pass
+
+def time_up():
+    pass
+
+def update():
+    pass
