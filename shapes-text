@@ -1,0 +1,30 @@
+import pgzrun 
+import random
+TITLE="shape-text"
+WIDTH=750
+HEIGHT=600
+
+def draw():
+    r=random.randint(0,255)
+    g=random.randint(0,255)
+    b=random.randint(0,255)
+    width=300
+    height=200
+    rect1=Rect((50,200),(width,height))
+    rect2=Rect((400,240),(width,height))
+    rect3=Rect((90,500),(width,height))
+
+    screen.draw.text("Rectangle",(150,20),color="yellow")
+    screen.draw.rect((rect1),(r,g,b))
+
+    screen.draw.filled_circle((200,300),(70),(r,g,b))
+    screen.draw.circle((320,300),(50),(r,g,b))
+
+    screen.draw.filled_rect((rect2),(r,g,b))
+    screen.draw.textbox("I am a textbox",rect3)
+
+
+
+
+
+pgzrun.go()
