@@ -1,0 +1,57 @@
+import pgzrun
+import time
+import random
+
+WIDTH=1280
+HEIGHT=720
+score=0
+game_over=False
+hknight=Actor("hknight")
+geo=Actor("geo")
+#positioning of images
+hknight.position=(500,400)
+geo.postion=(300,250)
+
+message=" "
+
+def draw():
+    screen.blit("hollow_knight_backround",(0,0))
+    geo.draw()
+    hknight.draw()
+    screen.draw.text("SCORE: "+str(score),color="red",topleft=(10,10))
+    if game_over:
+        screen.fill("blue")
+        global message
+        message="times up!\n final score is: "
+        screen.draw.text(message+str(score),midtop=(WIDTH/2,20),fontsize=60,color="red")
+
+    
+    
+
+def place_geo():
+    geo.x=random.randint(100,1180)
+    geo.y=random.randint(100,620)
+
+def time_up():
+    global game_over
+    game_over = True
+
+def update():
+    global score
+    if keyboard.left:
+        hknight.x=hknight.x-5
+    if keyboard.right:
+        hknight.x=hknight.x+5
+    if keyboard.up:
+        hknight.y=hknight.y-5
+    if keyboard.down:
+        hknight.y=hknight.y+5
+    geo_collected=hknight.colliderect(geo)
+    if geo_collected == True:
+        score += 1
+        place_geo()
+    
+clock.schedule(time_up,30.0)
+
+pgzrun.go()
+
