@@ -1,0 +1,32 @@
+import pgzrun
+import random
+
+WIDTH = 500
+HEIGHT = 300
+TITLE = "shoot the alien"
+
+message = ""
+alien = Actor("alien 2")
+
+def draw():
+    screen.clear()
+    screen.fill("red")
+    alien.draw()
+    screen.draw.text(message,center=(250,30),fontsize = 40,color = "white")
+
+def place_alien():
+    alien.x = random.randint(30,470)
+    alien.y = random.randint(30,270)
+
+def on_mouse_down(pos):
+    global message
+    if alien.collidepoint(pos):
+        message = "good shot"
+        place_alien()
+    else:
+        message = "You missed the shot, try again"
+
+place_alien()#not to change the alien location iof you missed the shot
+
+
+pgzrun.go()
