@@ -1,0 +1,26 @@
+friends = ["james","isaac","Thanish","jonah","james"]
+print(friends,"\n")
+# to get total number of items in a lsit
+print(f"total number of items in the list = {len(friends)}\n")
+
+print("number of times james appears in list = ",friends.count("james"),"\n")
+
+list2 = ["mr mcgowan","milo","caelen"]
+list3 = ["zachary","mr tompson","charles"]
+friends.append(list2)
+print(f"{friends}")
+friends.extend(list3)
+print(f"adding a list to a list with extend\n{friends}\n")
+#deleting an item using its name
+friends.remove(list2)
+print(f"\n{friends}\n")
+friends.pop(3)
+
+#iterating list items
+totalitems = len(friends)
+print(f"total items in list = {totalitems}\n")
+for i in range(len(friends)):
+    print(f"item at index {i} = {friends[i]}")
+# searching for an item "in" or "not in" a list
+print("arun" in friends)
+print("arun" not in friends)
