@@ -1,0 +1,59 @@
+import pgzrun
+import random
+from time import time
+
+WIDTH = 600
+HEIGHT = 400
+sattelites = []
+lines = []
+next_sat = 0
+number_of_sattelites = 10
+start_time = 0
+end_time = 0
+total_time = 0
+
+def create_sattelite():
+    global start_time
+    for count in range(0,number_of_sattelites):
+        sattelite = Actor("sattelite")
+        sattelite.pos = (random.randint(25,WIDTH - 25),random.randint(25,HEIGHT - 25))
+        sattelites.append(sattelite)
+    start_time = time()#to get current time of system
+
+def draw():
+    global total_time
+    screen.blit("backround",(0,0))
+    number = 1 
+
+    for sattelite in sattelites:
+        screen.draw.text(str(number),(sattelite.pos[0],sattelite.pos[1] + 20))
+
+        sattelite.draw()
+        number = number + 1
+     
+    for line in lines:
+        screen.draw.line(line[0],line[1],(255,255,255))
+        
+    if next_sat < number_of_sattelites:
+        total_time = time() - start_time
+        screen.draw.text(str(round(total_time,1)),(20,20),fontsize = 40)
+    else:
+        screen.draw.text(str(round(total_time,1)),(20,20),fontsize = 40)
+
+def update():
+    pass
+
+def on_mouse_down(pos):
+    pass
+
+create_sattelite()
+
+
+
+
+
+
+
+
+
+pgzrun.go()
