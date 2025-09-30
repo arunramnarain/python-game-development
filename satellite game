@@ -27,9 +27,8 @@ def draw():
 
     for sattelite in sattelites:
         screen.draw.text(str(number),(sattelite.pos[0],sattelite.pos[1] + 20))
-
         sattelite.draw()
-        number = number + 1
+        number += 1
      
     for line in lines:
         screen.draw.line(line[0],line[1],(255,255,255))
@@ -37,6 +36,7 @@ def draw():
     if next_sat < number_of_sattelites:
         total_time = time() - start_time
         screen.draw.text(str(round(total_time,1)),(20,20),fontsize = 40)
+
     else:
         screen.draw.text(str(round(total_time,1)),(20,20),fontsize = 40)
 
@@ -44,16 +44,17 @@ def update():
     pass
 
 def on_mouse_down(pos):
-    pass
+    global next_sat
+    global lines
+    if next_sat < number_of_sattelites:
+        if sattelites[next_sat].collidepoint(pos):
+            if next_sat:
+                lines.append((sattelites[next_sat - 1].pos,sattelites[next_sat].pos))
+            next_sat += 1
+        else:
+            lines = []
+            next_sat = 0
 
 create_sattelite()
-
-
-
-
-
-
-
-
 
 pgzrun.go()
