@@ -1,0 +1,136 @@
+def main():
+    tuple_list = ["book"]
+    tuple_dict = {"book":5}
+    user_tuple = (tuple_list, tuple_dict, 0, 1, "word")
+    print("welcome to the tuple program")
+    choice = int(input("""choose an option from 1 - 5:
+    1. add an item
+    2. remove an item
+    3. change an item
+    4. view the tuple
+    5. turn the list into a 2d list 
+    6. get an item out of a list
+    7. get the values out of a dictionary
+    8. get the keys out of a dictionary
+    9. get a letter out of a list
+    10. check if an item is in the tuple
+                       
+    enter choice here: """))
+
+    if choice == 1:
+        while True:
+            storage_choice = int(input("would you like:\n 1. dictionary\n 2. list\n"))
+            
+            if storage_choice == 2:
+                append_choice = input("enter what you would like to add: ")
+                tuple_list.append(append_choice)
+                break
+            if storage_choice == 1:
+                value = input(f"enter the value assigned to {append_choice}: ")
+                append_choice = input("enter what you would like to add: ")
+                tuple_dict[append_choice] = value
+                break
+            else:
+                print("please choose a valid option")
+        print(user_tuple)
+
+    if choice == 2:
+        while True:
+            remove_choice = input("enter what you would like to remove: ")
+            storage_choice = int(input("would you like:\n 1. dictionary\n 2. list\n"))
+            if storage_choice == 2:
+                tuple_list.remove(remove_choice)
+                break
+            if storage_choice == 1:
+                value = input(f"enter the value assigned to {remove_choice}: ")
+                tuple_dict[remove_choice] = value
+                break
+            if remove_choice in user_tuple:
+                print("sorry but anything in a tuple can not be updated")
+
+    if choice == 3:
+        while True:
+            storage_choice = int(input("would you like:\n 1. dictionary\n 2. list\n"))
+            if storage_choice == 2:
+                change_choice = input("enter what you would like to change: ")
+                into_choice = input("what would you like it to be: ")
+                tuple_list.remove(change_choice)
+                tuple_list.append(into_choice)              
+                break
+            if storage_choice == 1:
+                value = input(f"enter the value assigned to {remove_choice}: ")
+                tuple_dict[remove_choice] = value
+                break
+            if remove_choice in user_tuple:
+                print("sorry but anything in a tuple can not be updated")
+
+    if choice == 4:
+        print_choice = int(input("what would you like to print: \n 1. the list\n 2. the dictionary\n 3. the tuple"))
+        if print_choice == 1:
+            print(tuple_list)
+        if print_choice == 2:
+            print(tuple_dict)
+        if print_choice == 3:
+            print(user_tuple)
+
+    if choice == 5:
+        matrix = []
+        rows = int(input("enter the rows: "))
+        cols = int(input("enter the collumns: "))
+        for i in range(rows):
+            temp = []
+            for j in range(cols):
+                a = int(input("enter a value: "))
+                temp.append(a)
+            matrix.append(temp)
+        print("")
+
+        for i in range(rows):
+            for j in range(cols):
+                print(matrix[i][j],end = "")
+            print("")
+    
+    if choice == 6:
+        index = int(input("\nenter the index of the item: "))
+        print(tuple_list[index])
+        #index_or_string = input("do you want to find it by index or string: ")
+        #if index_or_string == "string":
+        #    in_list = input("what do you want to print in the list: ")
+        #    if in_list in tuple_list:
+        #        print(in_list)
+        #if index_or_string == "index":
+        #    index = int(input("enter the index of the item: "))
+        #    print(tuple_list[index])
+    
+    if choice == 7:
+        print(tuple_dict.values())
+    
+    if choice == 8:
+        print(tuple_dict.keys())
+    
+    if choice == 9:
+        ind = int(input("what is the index of the item: "))
+        let = int(input("which letter do you want: "))
+        let -= 1
+        print(tuple_list[ind][let])
+
+    if choice == 10:
+        dec = input("is it in dictionary or list: ")
+        if dec == "dictionary":
+            item = input("what is the item: ")
+            if item in tuple_dict:
+                print("item is in dictionary")
+            if item not in tuple_dict:
+                print("item is not in dictionary")
+        if dec == "list":
+            item = input("what is the item: ")
+            if item in tuple_list:
+                print("item is in list")
+            if item not in tuple_list:
+                print("item is not in list")
+
+while True:
+    main()
+    runs = input("\ndo you want to go again: ")
+    if runs == "no":
+        break
