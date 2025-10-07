@@ -33,21 +33,30 @@ def draw():
     screen.draw.filled_rect(question_box,"yellow")
     screen.draw.filled_rect(timer_box,"blue")
     screen.draw.filled_rect(skip_box,"white")
+
     for answer_box in answer_boxes:
         screen.draw.filled_rect(answer_box,"green")
     
     marquee_message = "Welcome to quizmaster game..."
     marquee_message += f"Q:{question_index} of {question_count}"
+
     screen.draw.textbox(marquee_message, marquee_box, color = "white")
 
     screen.draw.textbox(str(time_left),timer_box,color = "white", shadow = (0.5,0.5), scolor = "grey")
 
     screen.draw.textbox("skip",skip_box, color = "black", angle = -90)
 
+    #CORRECTION =================
+    #add code to display questions
+    screen.draw.textbox(question[0].strip(), question_box, 
+                        color="blue", shadow=(0.5,0.5),
+                        scolor="dim grey")
 
-
-
-
+    index = 1
+    for answer_box in answer_boxes:
+        screen.draw.textbox(question[index].strip(), answer_box, color="black")
+        index = index + 1
+    #============================
 def update():
     move_marquee()
 
@@ -126,7 +135,7 @@ def update_time_left():
         game_over()
 
 read_question_file()
-question = read_next_ques
+question = read_next_ques()#correction
 clock.schedule_interval(update_time_left,1)
 
 pgzrun.go()
