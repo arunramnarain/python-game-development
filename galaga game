@@ -10,16 +10,16 @@ BLUE = (0,0,255)
 ship = Actor("galager")
 bug = Actor("bug")
 
-ship.pos = (W//2,H-70)
+ship.pos = (W//2,H-5)
 speed = 3
 
 bullets = []
 enemies = []
 
-for  i in range(10):
+for  x in range(6):
     enemies.append(Actor("bug"))
-    enemies[-1].x = 100 + 70*x
-    enemies[-1].y = -30
+    enemies[-1].x = 100 +70*x #makes the distance between enemies 70
+    enemies[-1].y = -10
 
 score = 0
 direction = 1
@@ -28,7 +28,7 @@ def displayScore(score):
 
 
 def on_key_down(key):
-    if key == keys.SPACE:
+    if key == key.SPACE:
         bullets.append(Actor("bullet"))
         bullets[-1].x = ship.x
         bullets[-1].y = ship.y
@@ -39,17 +39,50 @@ def update():
     global direction
     move_down = False
     if keyboard.left:
-        ship.x -= 5
-        if ship.x <= 0:#to make the ship move left
+        ship.x -= 5#to make the ship move left
+        if ship.x <= 0:
             ship.x = 0
     elif keyboard.right:
         ship.x += 5
         if ship.x >= W:
             ship.x = W
     
+    for bullet in bullets:
+        if bullet.y <= 0:
+            bullets.remove(bullet)
+        else:
+            bullet.y -= 10
+    
+    if len(enemies) > 0 and (enemies[0].x < 20 or enemies[-1].x > W-30):
+        move_down = True
+        direction = direction*(-1)
+    
+    for enemy in enemies:
+        enemy.x += 5*direction
+        if move_down == True:
+            enemy.y += 10
+    
+        for bullet in bullets:
+            if enemy.colliderect(bullet):
+                sounds.beep.play()
+                score += 100
+                bullets.remove(bullet)
+                enemies.remove(enemy)
+
+    
 
 def draw():
-    pass
+    screen.clear()
+    screen.fill(BLUE)
+    for bullet in bullets:
+        bullet.draw()
+    for enemy in enemies:
+        enemy.draw()
+    ship.draw()
+    displayScore(score)
+
+
+
                    
 
 
