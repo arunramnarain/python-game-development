@@ -1,0 +1,28 @@
+set_1 = {"a","c","b","c","a"}
+print(set_1,"\n")
+
+#converting lists to sets 
+list = ["a","b","c","a","b"]
+simple_set = set(list)
+print(simple_set)
+
+#sets are not indexable
+#print(simple_set[3]) - will give error#
+
+#checking if an element exists in a set or not
+if "a" in simple_set:
+    print("\nyes")
+else:
+    print("no")
+list_2 = [2,6,78,4,2,7,5]
+int_set = set(list_2)
+int_set.add(3)
+int_set.add(8)
+int_set.add(10)
+print(int_set)
+
+# set operations
+#1 Union
+#2 Intersection
+#3 Sifference
+#2 Symetric Difference
