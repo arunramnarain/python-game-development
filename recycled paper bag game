@@ -7,8 +7,8 @@ CENTER_X = W/2
 CENTER_Y = H/2
 
 CENTER = (CENTER_X,CENTER_Y)
-FINAL_LEVEL = 6
-START_SPEED = 10
+FINAL_LEVEL = 10
+START_SPEED = 6
 ITEMS = ["plastic_bag","battery","bottle","crisps_bag"]
 game_over = False
 game_complete = False
@@ -62,31 +62,50 @@ def layout_items(items_to_layout):
     random.shuffle(items_to_layout)
     for index,item in enumerate(items_to_layout):
         new_x_pos = (index + 1) * gap_size
-        item.index = new_x_pos
+        item.x = new_x_pos
 
+def animate_items(items_to_animate):
+    global animations_list
+    for item in items_to_animate:
+        duration = START_SPEED - current_level
+        item.anchor = ("center","bottom")
+        animation = animate(item, duration = duration, on_finished = handle_game_over, y = H)
+        animations_list.append(animation)
 
-def make_items():
-    pass
-
-def animate_items():
-    pass
+    
 
 def handle_game_over():
-    pass
+    global game_over
+    game_over = True
 
 def on_mouse_down(pos):
-    pass
-
-def game_over():
-    pass
+    global item_list, current_level
+    for item in item_list:
+        if item.collidepoint(pos):
+            if "paper_bag" in item.image:
+                handle_game_complete()
+            else:
+                handle_game_over()
 
 def handle_game_complete():
-    pass
+    global animations_list, item_list, game_complete, current_level
+    stop_animations(animations_list)
+    if current_level == FINAL_LEVEL:
+        game_complete = True
+    else:
+        current_level += 1
+        item_list = []
+        animations_list = []    
 
-def stop_animations():
-    pass
+
+
+def stop_animations(animations_to_stop):
+    for animation in animations_to_stop:
+        if animation.running:
+            animation.stop()
 
 def display_message(heading_text,sub_heading_text):
-    pass
+    screen.draw.text(heading_text, fontsize = 60, center = CENTER, color = "blue")
+    screen.draw.text(sub_heading_text, fontsize = 40, center = (CENTER_X, CENTER_Y + 80), color = "blue")
 
 pgzrun.go()
