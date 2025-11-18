@@ -1,0 +1,39 @@
+# set operations
+#1 Union
+#2 Intersection
+#3 Difference
+#4 Symetric Difference
+
+# union(addition)
+a = {1,2,3,4,5}
+b = {4,5,6,7,8,9}
+
+#union of sets
+print(f"a union b:\n{a.union(b)}")
+#or
+print(f"{a|b}\n")
+
+#intersection
+print(f"a intersection b:\n{a.intersection(b)}")
+#or
+print(f"{a&b}\n")
+
+#difference
+print(f"difference:\n{a.difference(b)}")
+#or
+print(f"a-b:\n{a-b}\n")
+print(f"b-a:\n{b-a}\n")
+
+#symmetric difference
+print(f"symetric difference:\n{a.symmetric_difference(b)}")
+#or
+print(f"{a^b}\n")
+
+#questions
+set_1 = {9,6,3,4,7}
+list_1 = [1,2,3,4,5]
+set_2 = set(list_1)
+print(set_1|set_2)
+print(set_1&set_2)
+print(set_1-set_2)
+print(set_1^set_2)
