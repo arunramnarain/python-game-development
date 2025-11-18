@@ -1,0 +1,31 @@
+#a panagram is a word or sentence that contains every letter of the alphabet
+# e.g the quick brown fox jumps over the lazy dog
+import string
+import sys
+def is_panagram(str_1,alphabet = string.ascii_lowercase):
+    alphaset = set(alphabet)
+    str_set = set(str_1.lower())
+    return alphaset <= str_set
+
+print(is_panagram("the quick brown fox jumps over the lazy dog"))
+
+#own program for palindrom numbers
+def is_palindrom_number(num):
+    if num < 0:
+        return False
+    while True:
+        if str(num)[0] != str(num)[-1]:
+            return False
+        return True
+
+print(is_palindrom_number(123217))
+
+#own program for palindrom strings
+def is_palindrom_str(string):
+    while True:
+        if string[0] != string[-1]:
+            return False
+        return True
+
+print(is_palindrom_str("tacocats"))
+        
