@@ -1,0 +1,54 @@
+set_1 = set([1,2,3,4,5])
+set_2 = set(["apple","banana","potatoe","pear"])
+def sets_program(set_1,set_2):
+    while True:
+        print("Choose an option:")
+        print("1. add to a set")
+        print("2. remove from a set")
+        print("3. Union of sets")
+        print("4. intersection of sets")
+        print("5. difference of sets")
+        print("6. symetric difference of sets")
+        print("7. end program\n")
+        option = int(input("enter your choice: "))
+
+        if option == 1:
+            set_choice = int(input("do you want set 1 or set 2: "))
+            if set_choice == 1:
+                append_choice = input("enter what you would like to add: ")
+                set_1.add(append_choice)
+            elif set_choice == 2:
+                append_choice = input("enter what you would like to add: ")
+                set_2.add(append_choice)
+            print(f"{set_1}\n{set_2}")
+            
+        elif option == 2:
+            set_choice = float(input("do you want set 1 or set 2: "))
+            if set_choice == 1:
+                remove_choice = int(input("enter what you would like to remove: "))
+                set_1.remove(remove_choice)
+            elif set_choice == 2:
+                remove_choice = input("enter what you would like to remove: ")
+                set_2.remove(remove_choice)
+            print(f"{set_1}\n{set_2}")
+
+        elif option == 3:
+            print(set_1.union(set_2))
+
+        elif option == 4:
+            print(set_1.intersection(set_2))
+
+        elif option == 5:
+            set_choice = int(input("do you want set 1 or 2: "))
+            if set_choice == 1:
+                print(set_1-set_2)
+            elif set_choice == 2:
+                print(set_2 - set_1)
+
+        elif option == 6:
+            print(set_1.symmetric_difference(set_2))
+        
+        elif option == 7:
+            break
+
+sets_program(set_1,set_2)
