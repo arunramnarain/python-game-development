@@ -1,0 +1,41 @@
+import pygame
+
+H = 800
+W = 800
+screen = pygame.display.set_mode((W,H))
+B = (0,0,0)
+w = (255,255,255)
+R = (255,0,0)
+G = (0,255,0)
+B = (0,0,255)
+screen.fill(w)
+pygame.display.update()
+
+class rectangle():
+    def __init__(self,color,dimension):
+        self.rect_surface = screen
+        self.rect_color = color
+        self.rect_dimension = dimension
+
+    def draw(self):
+        self.draw_rect = pygame.draw.rect(self.rect_surface,self.rect_color,self.rect_dimension)
+
+#creating objects 
+green_rect = rectangle(G,(50,60,200,200))
+blue_rect = rectangle(B,(450,460,200,200))
+red_rect = rectangle(R,(250,260,200,200))
+
+running = True
+
+while running:
+    green_rect.draw()
+    blue_rect.draw()
+    red_rect.draw()
+    pygame.display.update()
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    
+        
+        
