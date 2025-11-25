@@ -1,0 +1,37 @@
+import pygame
+
+W = 800
+H = 800
+screen = pygame.display.set_mode((W,H))
+screen.fill("yellow")
+Blue = (0,0,255)
+pygame.display.update()
+
+class circle():
+    def __init__(self,color,position,radius,width):
+        self.circle_color = color
+        self.circle_position = position
+        self.radius = radius
+        self.circle_width = width
+        self.circle_surface = screen
+    
+    def draw(self):
+        self.draw_circle = pygame.draw.circle(self.circle_surface,
+                                              self.circle_color,
+                                              self.circle_position
+                                                self.radius,
+                                                self.circle_width)
+
+    def grow(self,r):
+        self.circle_radius = self.circle_radius + r
+        self.draw_circle = pygame.draw.circle(self.circle_surface,
+                                              self.circle_color,
+                                              self.circle_position
+                                                self.radius,
+                                                self.circle_width)
+#objects
+blue_circle = circle(Blue,(0,0),60,0)
+green_circle = circle((255,0,0),(-300,300),10,3)
+running = True
+while running:
+            
