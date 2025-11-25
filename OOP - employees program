@@ -1,0 +1,69 @@
+class employees():
+
+    employee_id = 0000
+    salary = 00000
+    name = ""
+
+    def __init__(self):
+        print("making a new employee")
+    
+    def display_details(self):
+        print(f"employee id: {self.employee_id}")
+        print(f"salary: {self.salary}")
+        print(f"name: {self.name}\n")
+
+    def define_employee(self):
+        self.employee_id = int(input("enter the employee id: "))
+        self.salary = int(input("enter the salary: "))
+        self.name = input("enter the name: ")
+
+    def change_employee(self):
+        print("\nchoose the employee id")
+        print(set[employee_dict])
+        choice_id = int(input("enter the employee id: "))
+        if choice_id:
+            employee_dict.pop(choice_id)
+            employee.define_employee()
+        else:
+            print("that is not a valid employee id\n")
+
+    def details(self):
+        return self.name,self.salary
+    
+    
+employee_detail_list = []
+employee_dict = {1:[1231,"arun"]}
+
+while True:
+    employee = employees()
+    print("\nchoose an option")
+    print("1. display all employees")
+    print("2. create employee")
+    print("3. change employee")
+    print("4. check if an employee exists")
+    option = int(input("enter the option: "))
+
+    if option == 1:
+        print(employee_dict)
+
+    elif option == 2:
+        employee.define_employee()
+
+    elif option == 3:
+        employee.change_employee()
+    
+    elif option == 4:
+        employee_num = int(input("what is the id of the employee you are looking for: "))
+        if employee_num in employee_dict:
+            print(employee_dict[employee_num])
+        else:
+            print("there is not an employee by that id")
+
+    else:
+        continue
+
+    employee.display_details()
+    employee_detail_list.extend(employee.details())
+    employee_dict[employee.employee_id] = employee_detail_list
+    print(employee_dict)
+    employee_detail_list = []
