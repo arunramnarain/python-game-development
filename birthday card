@@ -1,0 +1,41 @@
+import pygame
+import time
+
+W = 800
+H = 800
+pygame.init()
+screen = pygame.display.set_mode((W,H))
+pygame.display.set_caption("Birthday card")
+running = True
+while running:
+    for event in pygame.event.get():
+        if event == pygame.QUIT:
+            running = False
+    pygame.display.update()
+    img = pygame.image.load("bday card.py\card.jpg")
+    image = pygame.transform.scale(img,(W,H))
+    font = pygame.font.SysFont("times new roman", 70)
+    text = font.render("Happy", True,(0,225,0),"yellow")
+    text_2 = font.render("Birthday", True, (255,0,0))
+    screen.fill("white")
+    screen.blit(image,(0,0))
+    screen.blit(text,(270,300))
+    screen.blit(text_2,(250,380))
+    pygame.display.update()
+    time.sleep(2)
+    # inserting second image
+    cake = pygame.image.load("bday card.py\\birthday_cake.jpg")
+    cake_image = pygame.transform.scale(cake,(W,H))
+    font_2 = pygame.font.SysFont("ariel", 50)
+    text_3 = font_2.render("Have a happy birthday",True,(0,0,255))
+    screen.blit(cake_image,(0,0))
+    screen.blit(text_3,(200,600))
+    pygame.display.update()
+    time.sleep(2)
+    #adding a third image
+    present = pygame.image.load("bday card.py\gift.jpg")
+    present_image = pygame.transform.scale(present,(W,H))
+    screen.blit(present_image,(0,0))
+    pygame.display.update()
+    time.sleep(2)
+    
