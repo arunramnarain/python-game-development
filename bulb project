@@ -1,0 +1,27 @@
+import pygame
+
+pygame.init()
+W = 600
+H = 600
+screen = pygame.display.set_mode((W,H))
+pygame.display.set_caption("light bulb project")
+screen.fill("white")
+pygame.display.update()
+running = True
+while running:
+    event = pygame.event.poll()
+    if event.type == pygame.MOUSEBUTTONDOWN:
+        image = pygame.image.load("bulb project\\light_bulb.jpg")
+        resized_image = pygame.transform.scale(image,(300,300))
+        screen.blit(resized_image,(150,150))
+        pygame.display.update()
+    elif event.type == pygame.MOUSEBUTTONUP:
+        image = pygame.image.load("bulb project\\bulb_off.jpg")
+        resized_image = pygame.transform.scale(image,(300,300))
+        screen.blit(resized_image,(150,150))
+        pygame.display.update()
+
+    for event in pygame.event.get():#
+        if event == pygame.QUIT:
+            running = False
+
