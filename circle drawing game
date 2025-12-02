@@ -1,0 +1,62 @@
+import pygame
+
+W = 800
+H = 800
+screen = pygame.display.set_mode((W,H))
+screen.fill("white")
+B = (0,0,255)
+G = (0,255,0)
+R = (255,0,0)
+White = (255,255,255)
+Black = (0,0,0)
+pygame.display.update()
+
+class circle():
+    def __init__(self,color,position,radius,width = 0):
+        self.circle_color = color
+        self.circle_position = position
+        self.radius = radius
+        self.circle_width = width
+        self.circle_surface = screen
+    
+    def draw(self):
+        self.draw_circle = pygame.draw.circle(self.circle_surface,
+                                              self.circle_color,
+                                              self.circle_position,
+                                                self.radius,
+                                                self.circle_width)
+
+    def grow(self,r):
+        self.radius += r
+        self.draw_circle = pygame.draw.circle(self.circle_surface,
+                                              self.circle_color,
+                                              self.circle_position,
+                                                self.radius,
+                                                self.circle_width)
+#objects
+blue_circle = circle(B,(400,400),10)# 0 in width will means filled
+red_circle = circle(R,(400,400),40)
+black_circle = circle(Black,(400,400),5)
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            screen.fill("white")
+            red_circle.draw()
+            blue_circle.draw()
+            black_circle.draw()
+            pygame.display.update()
+        if event.type == pygame.MOUSEBUTTONUP:
+            screen.fill("white")
+            red_circle.grow(8)
+            blue_circle.grow(8)
+            black_circle.grow(8)
+            pygame.display.update()
+        if event.type == pygame.MOUSEMOTION:
+            position = pygame.mouse.get_pos()
+            green_circle = circle(G,position,4)
+            green_circle.draw()
+            pygame.display.update()
+        
