@@ -1,0 +1,32 @@
+import pygame
+from pygame.locals import *
+from time import *
+
+W = 800
+H = 600
+screen = pygame.display.set_mode((W,H))
+pygame.display.set_caption("rocket in space")
+player_x = 400
+player_y = 400
+keys = [False,False,False,False]
+player = pygame.image.load("rocket\\rocket.png")
+backround = pygame.image.load("rocket\\backround.png")
+while player_y < H:
+    screen.blit(backround,(0,0))
+    screen.blit(player,(player_x,player_y))
+    pygame.display.flip()
+    for  event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit() # or .exit()
+        # if any key is pressed then this will be triggered 
+        if event.type == pygame.KEYDOWN:
+            if event.key == K_UP:
+                keys[0] = True
+            elif event.key == K_LEFT:
+                keys[1] = True
+            elif event.key == K_DOWN:
+                keys[2] = True
+            elif event.key == K_RIGHT:
+                keys[3] = True
+            
+            
