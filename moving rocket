@@ -28,5 +28,36 @@ while player_y < H:
                 keys[2] = True
             elif event.key == K_RIGHT:
                 keys[3] = True
-            
-            
+        
+        if event.type == pygame.KEYUP:
+            if event.key == K_UP:
+                keys[0] = False
+            elif event.key == K_LEFT:
+                keys[1] = False
+            elif event.key == K_DOWN:
+                keys[2] = False
+            elif event.key == K_RIGHT:
+                keys[3] = False
+    
+    if keys[0]:
+        if player_y > 50:
+            player_y -= 20
+    elif keys[2]:
+        if player_y < 550:
+            player_y += 20
+    if keys[1]:
+        if player_x > 50:
+            player_x -= 20
+    elif keys[3]:
+        if player_x < 750:
+            player_x += 20
+    player_y += 5
+    sleep(0.5)
+
+print("Game Over")
+
+
+
+
+
+                
