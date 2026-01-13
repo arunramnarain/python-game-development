@@ -1,0 +1,30 @@
+import pygame
+W = 800
+H = 800
+screen = pygame.display.set_mode((W,H))
+screen.fill("white")
+pygame.display.update()
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+    
+    screen.fill("blue")
+    pygame.display.update()
+
+    start_pos = (50,200)
+    end_pos = (150,290)
+    pygame.draw.line(screen,(255,255,0), start_pos, end_pos,5)
+    #to draw a hollow circle
+    pygame.draw.circle(screen,(45,189,9),(300,250),30,5)
+    pygame.draw.circle(screen,(255,0,255),(100,200),30,0)
+
+    #hexagon - 6 sides
+    points = [(25,75),(50,75),(65,100),(50,125),(25,125),(10,100)]
+    pygame.draw.polygon(screen,"pink",points)
+    
+    #elipse
+    pygame.draw.ellipse(screen,"yellow", (400,200,200,150),5)
+    pygame.display.update()
