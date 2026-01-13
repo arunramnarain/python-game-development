@@ -1,0 +1,55 @@
+import pygame
+
+pygame.init()
+W = 800
+H = 800
+screen = pygame.display.set_mode((W,H))
+screen.fill("White")
+pygame.display.update()
+
+#loading images
+ludo = pygame.image.load("matching_lines.py\\images\\Ludo image.png")
+subway_surfers = pygame.image.load("matching_lines.py\\images\\subway surfers image.png")
+temple_run = pygame.image.load("matching_lines.py\\images\\temple run image.png")
+candy_crush = pygame.image.load("matching_lines.py\\images\\candy crush image.jpg")
+
+# positioning the images
+screen.blit(ludo,(200,100))
+screen.blit(subway_surfers,(200,300))
+screen.blit(temple_run,(200,500))
+screen.blit(candy_crush,(200,700))
+
+font = pygame.font.SysFont("Times New Roman", 36)
+
+text_ludo = font.render("Ludo",True,(0,0,255))
+text_subway = font.render("subway surfers",True,(255,0,0))
+text_temple = font.render("temple run",True,(0,255,0))
+text_candy = font.render("candy crush",True,(164,97,33))
+
+screen.blit(text_ludo, (400,100))
+screen.blit(text_subway, (400,300))
+screen.blit(text_temple, (400,450))
+screen.blit(text_candy, (400,600))
+
+pygame.display.update()
+
+running = True
+
+while running:
+    event = pygame.event.poll()
+    if event.type == pygame.MOUSEBUTTONDOWN:
+        pos = pygame.mouse.get_pos()
+        pygame.draw.circle(screen,(0,255,0),pos,20,0)
+        pygame.display.update()
+    
+    elif event.type == pygame.MOUSEBUTTONUP:
+        pos_end = pygame.mouse.get_pos()
+        pygame.draw.line(screen,(0,255,0),pos,pos_end,5)
+        pygame.draw.circle(screen,(0,255,0),pos_end,20,1)
+        pygame.display.update()
+    
+    for event in pygame.event.get():
+        if event == pygame.QUIT:
+            exit()
+    
+    pygame.display.update()
