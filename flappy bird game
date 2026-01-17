@@ -1,0 +1,100 @@
+import pygame
+import _random
+pygame.init()
+
+W = 1000
+H = 1000
+
+screen = pygame.display.set_mode((W,H))
+pygame.display.set_caption("Flappy Bird")
+FPS = 60
+WHITE = (255,255,255)
+font = pygame.font.SysFont("Bauhaus 93", 60)
+
+BG = pygame.image.load("flappy bird\images\\backround.png")
+GROUND = pygame.image.load("flappy bird\\images\\flat landscape.png")
+RESTART_IMAGE = pygame.image.load("flappy bird\images\\restart button.png")
+
+GROUND_SCROLL = 0
+SCROLL_SPEED = 5
+
+
+
+
+
+
+FLYING = False
+GAME_OVER = False
+PIPE_GAP = 150
+PIPE_FREQ = 1500 
+LAST_PIPE = pygame.time.get_ticks() - PIPE_FREQ
+SCORE = 0
+PASSED_PIPE = False
+
+def draw_text(text,colour,x,y):
+    screen.blit(font.render(text,True,colour), (x,y))
+
+def reset_game():
+    pipe_group.empty()
+    flappy.rect.center = (100, H//2)
+    global SCORE
+    global PASSED_PIPE
+    SCORE = 0
+    PASSED_PIPE = False
+    return SCORE
+
+class Bird(pygame.sprite.Sprite):
+    def __init__(self,x,y):
+        pygame.sprite.Sprite.__init__(self)
+        self.images =[pygame.image.load(f"flappy bird\images\\bird {i}.png")for i in range(1,4)]# loading all bird images
+        self.index = 0
+        self.counter = 0
+        self.image = self.images[self.index]
+        self.rect = self.images.get_rect(center = (x,y))
+        self.vel = 0
+        self.clicked = False
+
+    def update(self):
+        if FLYING:
+            self.vel = min(self.vel + 0.5,8)
+            self.rect.y += int(self.vel)
+
+        if not GAME_OVER:
+            if pygame.mouse.get_pressed()[0] and not self.clicked:
+                self.clicked = True
+                self.vel = - 10
+            
+            if not pygame.mouse.get_pressed()[0]:
+                self.clicked = False
+    
+            self.counter += 1
+
+            if self.counter > 5:
+                self.counter = 0
+                self.index = (self.index + 1) % len(self.images)
+                self.image = pygame.transform.rotate(self.images[self.index], self.vel * -2)
+            
+        else:
+            self.image = pygame.transform.rotate(self.images[self.index], -90)
+
+
+
+
+
+
+
+
+class Button():
+    def __init__(self,x,y,image):
+        self.image = image
+        self.rect = self.image.get_rect(topleft = (x,y))
+
+    def draw(self):
+        pos = pygame.mouse.get_pos()
+        if self.rect.collidepoint(pos) and pygame.mouse.get_pressed()[0]:
+            return True
+        screen.blit(self.image,self.rect)
+        return False
+    
+        
+            
