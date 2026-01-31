@@ -2,8 +2,8 @@ import pygame
 import random
 pygame.init()
 
-W = 1000
-H = 1000
+W = 750
+H = 750
 
 screen = pygame.display.set_mode((W,H))
 pygame.display.set_caption("Flappy Bird")
@@ -85,10 +85,10 @@ class Pipe(pygame.sprite.Sprite):
 
         if pos == 1:
             self.image= pygame.transform.flip(self.image,False,True)
-            self.rect = self.image.get_rect(bottom_left = (x,y - PIPE_GAP//2))
+            self.rect = self.image.get_rect(bottomleft = (x,y - PIPE_GAP//2))
         
         else:
-            self.rect = self.image.get_rect(top_left = (x,y + PIPE_GAP//2))
+            self.rect = self.image.get_rect(topleft = (x,y + PIPE_GAP//2))
         
     
     def update(self):
@@ -163,10 +163,17 @@ while running:
     
     if (PASSED_PIPE and pipe_group)\
         and (flappy.rect.left > pipe_group.sprites()[0].rect.right):
-        score += 1
-        PASSED_PIPE = False
+        SCORE += 1
+        PASSED_PIPE = False 
 
     # collision detectionwith pipe
+
+    if pygame.sprite.groupcollide(bird_group,pipe_group,False,False) \
+        or flappy.rect.top < 0 or flappy.rect.bottom >= H - 200:
+        GAME_OVER = True
+        FLYING = False
+
+
     if GAME_OVER:
         if restart_button.draw():
             reset_game()
