@@ -99,11 +99,11 @@ while running:
         if score > 50:
             text = myfont.render("congratulations bin loot succesful", True, r)
             change_background("recycle marathon\\images\\winning screen.jpg")
-            screen.blit(text,(W - 600,H/2)) 
+            screen.blit(text,(W - 450,50)) 
         else:
             text = myfont.render("better luck next time", True, r)
             change_background("recycle marathon\\images\\recycle_screen.png") 
-            screen.blit(text,(W - 600,H/2))
+            screen.blit(text,(W - 450,50))
     
     else:
         change_background("recycle marathon\\images\\backround.png")
