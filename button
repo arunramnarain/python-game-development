@@ -1,0 +1,12 @@
+from tkinter import *
+
+root = Tk()
+
+root.geometry("200x300")# width and height of screen
+button = Button(root,text = "click me", bd = 7, background = "red",
+                activebackground="yellow",
+                 foreground = "maroon",command = root.destroy)
+button.pack(side = "bottom")
+
+root.mainloop()# alkways put at the end
+
